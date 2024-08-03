@@ -164,3 +164,4 @@ cython_debug/
 ner-pos.ipynb
 sample.ipynb
 ner.csv
+Data/readme.txt
