@@ -161,7 +161,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-ner-pos.ipynb
 sample.ipynb
 ner.csv
 Data/readme.txt
+BiLSTM-CRF.ipynb
+model/
