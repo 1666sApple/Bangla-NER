@@ -1,0 +1,12 @@
+transformers
+torch
+pandas
+scikit-learn
+numpy
+fastapi
+uvicorn
+gunicorn
+Jinja2
+pickle
+json
+pydantic
