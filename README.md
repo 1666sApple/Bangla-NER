@@ -1,6 +1,6 @@
 # Bangla-NER
 
-# NER and POS Tagging API
+## NER and POS Tagging API
 
 This project provides a FastAPI application for Named Entity Recognition (NER) and Part-of-Speech (POS) tagging using a pre-trained model based on XLM-RoBERTa.
 
@@ -81,27 +81,29 @@ bash
 uvicorn app.main:app --reload
 ```
 
-#### Configuration
+## Configuration
 
 Configuration settings are defined in model/config.py. You can adjust settings such as maximum sequence length, batch sizes, and model paths here.
 
-#### Model Weights
+## Model Weights
 
 Ensure that the model weights file `(ner_pos_model.pt)` is located in the `app/models-weight/` directory.
 
-#### License
+## License
 
 This project is not licensed under any institutional licenses.
 
-#### Acknowledgements
+## Acknowledgements
 
 XLM-RoBERTa: A transformer-based model for multilingual text. [Link](https://huggingface.co/docs/transformers/model_doc/xlm-roberta)
 FastAPI: A modern, fast web framework for building APIs with Python. [Link](https://fastapi.tiangolo.com/)
 
-#### Contact
+## Contact
 
 For questions or feedback, please contact [1666sApple](https://github.com/1666sApple).
 
-#### Contributing
+## Contributing
 
 Contributions are welcome! Please follow the standard GitHub workflow.
+
+
