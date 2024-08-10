@@ -6,6 +6,57 @@ This project provides a FastAPI application for Named Entity Recognition (NER) a
 
 The project is organized into the following directories and files:
 
+```bash
+Bangla-NER-POS/
+│
+├── app/            # Entry point for FastAPI application
+│   ├── api/
+│   │   ├── __init__.py
+│   │   └── routes.py         # Defines the API routes and logic
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── ner_pos_model.py  # Load the trained model for inference
+│   ├── models-weight/
+│   │   ├── ner_pos_model.pt
+│   │   ├── ner_mapping.pkl
+│   │   ├── ner_mapping.json
+│   │   ├── pos_mapping.pkl
+│   │   └── pos_mapping.json
+│   │
+│   ├── static/
+│   │   ├── script.js
+│   │   └── style.css
+│   ├── templates/
+│   │   ├── index.html
+│   │   └── predict.html
+│   └── utils/
+│   │   ├── __init__.py
+│   │   └── predict.py
+│   ├── __init__.py
+│   └── main.py           # Function for making predictions using the model
+│
+├── model/
+│   ├── __init__.py
+│   ├── config.py             # Configuration settings
+│   ├── dataset.py            # CustomDataset class
+│   ├── model.py              # NERPOSModel class
+│   ├── train.py              # Training and validation logic
+│   └── utils.py              # Utility functions (e.g., seed_everything, parse_dataset)
+│
+├── screenshots/
+│   ├── app-command.png
+│   ├── home.png
+│   ├── eval.png
+│   └── prediction.png
+│
+├── scripts/
+│   ├── train_model.py        # Script to train the model
+│   └── run_app.sh            # Shell script to start the FastAPI server
+│
+├── requirements.txt          # Python dependencies
+└──README.md                 # Project documentation
+```
+
 - **`app/`**: Contains the FastAPI application and related files.
 
   - **`main.py`**: Entry point for the FastAPI application.
@@ -30,6 +81,8 @@ The project is organized into the following directories and files:
 
   - **`train_model.py`**: Script to train the model.
   - **`run_app.sh`**: Shell script to start the FastAPI server.
+
+- **`screenshots/`**: Contains screenshots of the application in action.
 
 - **`requirements.txt`**: Lists Python dependencies required for the project.
 - **`README.md`**: Project documentation, including setup and usage instructions.
