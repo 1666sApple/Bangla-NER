@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NER and POS Tagging Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome to NER and POS Tagging Service</h1>
+      </header>
+      <main>
+        <section>
+          <h2>About Our Service</h2>
+          <p>
+            This is web application that provides Name Entity Recognition (NER)
+            and Part of Speech (POS) Tagging for text input for Bengali
+            language. <br />
+            This was developed by
+            <a href="https://github.com/1666sApple">1666sApple</a> as a part of
+            the Bangla-NER project. <br />
+            This project uses the Bangla-NER model, which is a pre-trained
+            xml-roberta-base model for Bengali language. <br />
+            The model is trained on a dataset of Bengali text that contains
+            about 7000 sentences and is able to accurately identify and classify
+            named entities and parts of speech. <br />
+            This model has achived POS Precision of about 93.70% and NER
+            Precision of about 92.56%
+          </p>
+        </section>
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li>
+              Named Entity Recognition: Identify and classify named entities in
+              text for Bengali language
+            </li>
+            <li>
+              Part of Speech Tagging: Determine the grammatical parts of speech
+              for each word.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Try It Out</h2>
+          <form id="predictionForm">
+            <textarea
+              id="inputSentence"
+              rows="4"
+              placeholder="Enter your sentence here..."
+            ></textarea>
+            <button type="submit">Predict</button>
+          </form>
+          <div id="result">
+            <h2>Prediction Result:</h2>
+            <table id="resultTable">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>POS Tag</th>
+                  <th>NER Tag</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <p>&copy; 2024 NER and POS Tagging Service. All rights reserved.</p>
+      </footer>
+    </div>
+    <script src="{{ url_for('static', path='/script.js') }}"></script>
+  </body>
+</html>
