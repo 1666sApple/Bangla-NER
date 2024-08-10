@@ -41,12 +41,14 @@ This project provides a FastAPI application for Named Entity Recognition (NER) a
    cd <repository-directory>
    Create and activate a virtual environment:
    ```
+
 ```
 bash
 python -m venv venv
 source venv/bin/activate # On Windows, use `venv\Scripts\activate`
 Install dependencies:
 ```
+
 ```
 bash
 pip install -r requirements.txt
@@ -80,14 +82,26 @@ uvicorn app.main:app --reload
 ```
 
 #### Configuration
+
 Configuration settings are defined in model/config.py. You can adjust settings such as maximum sequence length, batch sizes, and model paths here.
 
 #### Model Weights
-Ensure that the model weights file (ner_pos_model_xlm_roberta.pt) is located in the app/models-weight/ directory.
+
+Ensure that the model weights file `(ner_pos_model.pt)` is located in the `app/models-weight/` directory.
 
 #### License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+This project is not licensed under any institutional licenses.
 
 #### Acknowledgements
-XLM-RoBERTa: A transformer-based model for multilingual text.
-FastAPI: A modern, fast web framework for building APIs with Python.
+
+XLM-RoBERTa: A transformer-based model for multilingual text. [Link](https://huggingface.co/docs/transformers/model_doc/xlm-roberta)
+FastAPI: A modern, fast web framework for building APIs with Python. [Link](https://fastapi.tiangolo.com/)
+
+#### Contact
+
+For questions or feedback, please contact [1666sApple](https://github.com/1666sApple).
+
+#### Contributing
+
+Contributions are welcome! Please follow the standard GitHub workflow.
