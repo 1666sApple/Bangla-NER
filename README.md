@@ -154,7 +154,7 @@ Configuration settings for the model, tokenizer, and training parameters are def
 
 Ensure that the model weights file (`ner_pos_model.pt`) is placed in the `app/models-weight/` directory. The application will load these weights to perform NER and POS tagging.
 
-**_ps:_** **Here Training the model using the scripts will automatically create the ner_pos_model.pt in the mentioned directory. However, make sure that the project is structured in the similar manner and strictly follows the naming conventions.**
+**_ps:_** **Here Training the model using the scripts will automatically create the ner_pos_model.pt in the mentioned directory. However, make sure that the project is structured in the similar manner and strictly follows the naming conventions. Initially the ner_pos_model.pt is not added. You have to train the script at least once to obtain the model.**
 
 ## Screenshots
 
