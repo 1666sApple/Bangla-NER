@@ -1,4 +1,4 @@
-# Bangla-NER
+# Bangla-NER-POS
 
 ## NER and POS Tagging API
 
@@ -44,8 +44,8 @@ cd Bangla-NER-POS
 Create and activate a virtual environment:
 
 ```bash
-python -m venv venv
-source venv/bin/activate # On Windows, use `venv\Scripts\activate`
+python -m venv .venv
+source .venv/bin/activate # On Windows, use `venv\Scripts\activate`
 ```
 
 Install dependencies:
