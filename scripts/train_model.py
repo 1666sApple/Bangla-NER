@@ -60,9 +60,9 @@ def main():
             print("Model saved!")
 
     # Save the mappings for inference
-    with open('model/models-weight/pos_mapping.pkl', 'wb') as f:
+    with open('app/models-weight/pos_mapping.pkl', 'wb') as f:
         pickle.dump(pos_mapping, f)
-    with open('model/models-weight/ner_mapping.pkl', 'wb') as f:
+    with open('app/models-weight/ner_mapping.pkl', 'wb') as f:
         pickle.dump(ner_mapping, f)
 
     print("Training complete.")
