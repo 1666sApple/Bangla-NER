@@ -54,7 +54,7 @@ Bangla-NER-POS/
 │   └── run_app.sh            # Shell script to start the FastAPI server
 │
 ├── requirements.txt          # Python dependencies
-└──README.md                 # Project documentation
+└── README.md                 # Project documentation
 ```
 
 - **`app/`**: Contains the FastAPI application and related files.
