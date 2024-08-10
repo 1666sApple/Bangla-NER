@@ -36,11 +36,12 @@ This project provides a FastAPI application for Named Entity Recognition (NER) a
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone <repository-url>
-   cd <repository-directory>
-   Create and activate a virtual environment:
-   ```
+```bash
+git clone https://github.com/1666sApple/Bangla-NER.git
+cd Bangla-NER
+```
+
+Create and activate a virtual environment:
 
 ```bash
 python -m venv venv
