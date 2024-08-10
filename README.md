@@ -42,15 +42,13 @@ This project provides a FastAPI application for Named Entity Recognition (NER) a
    Create and activate a virtual environment:
    ```
 
-```
-bash
+```bash
 python -m venv venv
 source venv/bin/activate # On Windows, use `venv\Scripts\activate`
 Install dependencies:
 ```
 
-```
-bash
+```bash
 pip install -r requirements.txt
 ```
 
@@ -60,8 +58,7 @@ pip install -r requirements.txt
 
 #### To train the model, run the following script:
 
-```
-bash
+```bash
 python scripts/train_model.py
 ```
 
@@ -69,15 +66,13 @@ python scripts/train_model.py
 
 Use the provided shell script to start the server:
 
-```
-bash
+```bash
 ./scripts/run_app.sh
 ```
 
 Alternatively, you can start the server using Uvicorn:
 
-```
-bash
+```bash
 uvicorn app.main:app --reload
 ```
 
@@ -105,5 +100,3 @@ For questions or feedback, please contact [1666sApple](https://github.com/1666sA
 ## Contributing
 
 Contributions are welcome! Please follow the standard GitHub workflow.
-
-
