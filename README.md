@@ -29,7 +29,7 @@ Bangla-NER-POS/
 │   ├── templates/
 │   │   ├── index.html
 │   │   └── predict.html
-│   └── utils/
+│   ├── utils/
 │   │   ├── __init__.py
 │   │   └── predict.py
 │   ├── __init__.py
