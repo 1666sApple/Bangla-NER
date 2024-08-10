@@ -1,2 +1,0 @@
-app/models-weight/ner_pos_model.pt filter=lfs diff=lfs merge=lfs -text
-*.pt filter=lfs diff=lfs merge=lfs -text
