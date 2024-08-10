@@ -15,7 +15,7 @@ body {
 
 header {
   background: #333;
-  color: #fff; /* Corrected typo: font-color -> color */
+  color: #fff;
   padding: 20px 0;
   text-align: center;
 }
@@ -62,13 +62,12 @@ li:before {
 
 footer {
   text-align: center;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 5px;
+  margin-top: 5px;
   background: #333;
   color: #fff;
 }
 
-/* Existing styles for the prediction page */
 form {
   background: #fff;
   padding: 20px;
