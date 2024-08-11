@@ -213,23 +213,33 @@ Ensure that the model weights file (`ner_pos_model.pt`) is placed in the `app/mo
 
 To give users a better understanding of how the application works, you can include screenshots of the API in action. Here are some suggestions:
 
-### 1. **Starting App**: A screenshot of cli commands to start the application:
+#### 1. **_Starting App_**:
+
+A screenshot of cli commands to start the application:
 
 ![CLI command](screenshots/app-command.png?raw=true "Screenshot of the CLI command"))
 
-### 2. **Home Page**: A screenshot of the landing page of the web application:
+#### 2. **_Home Page_**:
+
+A screenshot of the landing page of the web application:
 
 ![Homepage](screenshots/home.png?raw=true "Screenshot of the Homepage")
 
-### 3. **NER/POS Tagging Result**: A screenshot showing the input Bangla text and the corresponding NER and POS tags returned by the API:
+#### 3. **_NER/POS Tagging Result_**:
+
+A screenshot showing the input Bangla text and the corresponding NER and POS tags returned by the API:
 
 ![Prediction](screenshots/prediction.png?raw=true "Screenshot of the NER/POS Tagging Result")
 
-### 4. **Training Output**: A screenshot of the terminal output during model training, showing the loss and accuracy metrics over epochs.
+#### 4. **_Training Output_**:
+
+A screenshot of the terminal output during model training, showing the loss and accuracy metrics over epochs.
 
 ![Training](screenshots/training.png?raw=true "Screenshot of the Training Output")
 
-### 5. **Output Evaluation Matrices**: A screenshot of the terminal output after model training, showing the loss and accuracy metrics over epochs.
+#### 5. **_Output Evaluation Matrices_**:
+
+A screenshot of the terminal output after model training, showing the loss and accuracy metrics over epochs.
 
 ![Evaluation](screenshots/eval.png?raw=true "Screenshot of Evaluation Matrices")
 
