@@ -8,5 +8,4 @@ uvicorn
 gunicorn
 Jinja2
 pickle
-json
 pydantic

@@ -137,9 +137,7 @@ pip install -r requirements.txt
 
 10. **pickle**: Standard Python library for serializing and deserializing Python objects, useful for saving models and data structures. Typically not listed in requirements.txt as it's part of the standard library.
 
-11. **json**: Standard Python library for working with JSON data, used to parse and serialize JSON strings. Typically not listed in requirements.txt as it's part of the standard library.
-
-12. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
+11. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
 
 ## Usage
 
