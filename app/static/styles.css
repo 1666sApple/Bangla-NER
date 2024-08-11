@@ -1,9 +1,18 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Droid Sans Mono", "monospace", monospace;
   line-height: 1.6;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+}
+
+header,
+footer {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .container {
@@ -11,13 +20,6 @@ body {
   margin: auto;
   overflow: hidden;
   padding: 20px;
-}
-
-header {
-  background: #333;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
 }
 
 h1,
@@ -62,8 +64,7 @@ li:before {
 
 footer {
   text-align: center;
-  padding: 5px;
-  margin-top: 5px;
+  padding: 10px 0;
   background: #333;
   color: #fff;
 }
