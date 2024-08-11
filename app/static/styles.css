@@ -1,43 +1,72 @@
+/* Base styles */
+:root {
+  --background: #e0e0e0; /* Mid-tone gray background for better contrast with blur effect */
+  --primary-bg: #ffffff; /* White for main content areas */
+  --primary-text: #333333; /* Dark grey text for readability */
+  --button-bg: #007bff; /* Bright blue for buttons */
+  --header-footer-bg: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* White with slight opacity for blur effect */
+  --border-color: #b0b0b0; /* Slightly darker grey border color */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Light shadow for subtle effects */
+}
+
+/* General body styling */
 body {
-  font-family: "Droid Sans Mono", "monospace", monospace;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background: var(--background);
+  color: var(--primary-text);
+  transition: background 0.3s, color 0.3s;
 }
 
-header,
-footer {
-  width: 100%;
-  background: #333;
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-}
-
+/* Container for content */
 .container {
   width: 80%;
   margin: auto;
   overflow: hidden;
   padding: 20px;
+  background: var(--primary-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
+/* Header styling with blur effect */
+header {
+  background: var(--header-footer-bg);
+  color: var(--primary-text);
+  padding: 20px 0;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Header and h2 styling */
 h1,
 h2 {
-  color: #fff;
+  color: var(--primary-text);
 }
 
+/* Main content styling */
 main {
-  background: #fff;
+  background: var(--primary-bg);
   padding: 20px;
   margin-top: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
+/* Section styling */
 section {
   margin-bottom: 20px;
 }
 
+/* List styling */
 ul {
   list-style-type: none;
   padding-left: 20px;
@@ -45,66 +74,66 @@ ul {
 
 li:before {
   content: "✓ ";
-  color: #4caf50;
+  color: var(--button-bg);
 }
 
-.button {
-  display: inline-block;
-  background: #4caf50;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background: #45a049;
-}
-
-footer {
-  text-align: center;
-  padding: 10px 0;
-  background: #333;
-  color: #fff;
-}
-
-form {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
+/* Button styling */
 button {
   display: block;
   width: 100%;
   padding: 10px;
-  background: #333;
-  color: #fff;
+  background: var(--button-bg);
+  color: #ffffff;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background: #555;
+  background: #0056b3; /* Slightly darker blue for hover effect */
 }
 
-#result {
-  background: #fff;
+/* Footer styling with blur effect */
+footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  background: var(--header-footer-bg);
+  color: var(--primary-text);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Form styling */
+form {
+  background: var(--primary-bg);
   padding: 20px;
-  border-radius: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
+/* Textarea styling */
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+/* Result styling */
+#result {
+  background: var(--primary-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Table styling */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -113,10 +142,11 @@ table {
 th,
 td {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   text-align: left;
+  color: var(--primary-text);
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: #f0f0f0; /* Light grey for table headers */
 }

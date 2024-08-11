@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" />
   </head>
   <body>
-    <header>
-      <div class="container">
+    <div class="container">
+      <header>
         <h1>NER and POS Prediction</h1>
-      </div>
-    </header>
-    <main>
-      <div class="container">
+      </header>
+      <main>
         <form id="predictionForm">
           <textarea
             id="inputSentence"
@@ -35,13 +33,11 @@
             <tbody></tbody>
           </table>
         </div>
-      </div>
-    </main>
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 NER and POS Tagging Service. All rights reserved.</p>
-      </div>
-    </footer>
+      </main>
+      <footer>
+        <p>&copy; 2024 NER and POS Prediction. All rights reserved.</p>
+      </footer>
+    </div>
     <script src="{{ url_for('static', path='/script.js') }}"></script>
   </body>
 </html>
