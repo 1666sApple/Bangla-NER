@@ -14,6 +14,7 @@ def load_model_and_mappings():
     # Load token mappings
     with open('app/models-weight/token_to_id.pkl', 'rb') as f:
         token_to_id = pickle.load(f)
+    
     id_to_token = {v: k for k, v in token_to_id.items()}
 
     # Initialize model
