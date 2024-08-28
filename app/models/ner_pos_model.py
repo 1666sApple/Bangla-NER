@@ -1,6 +1,5 @@
 import torch
 from model.model import NERPOSModel
-from transformers import AutoTokenizer
 import pickle
 
 def load_model_and_mappings():
@@ -12,15 +11,17 @@ def load_model_and_mappings():
     with open('app/models-weight/ner_mapping.pkl', 'rb') as f:
         ner_mapping = pickle.load(f)
 
+    # Load token mappings
+    with open('app/models-weight/token_to_id.pkl', 'rb') as f:
+        token_to_id = pickle.load(f)
+    id_to_token = {v: k for k, v in token_to_id.items()}
+
     # Initialize model
     model = NERPOSModel(num_pos=len(pos_mapping), num_ner=len(ner_mapping))
     model.load_state_dict(torch.load('app/models-weight/ner_pos_model.pt', map_location=device))
     model.to(device)
     model.eval()
 
-    # Load tokenizer
-    tokenizer = AutoTokenizer.from_pretrained("xlm-roberta-base")
+    return model, token_to_id, id_to_token, pos_mapping, ner_mapping, device
 
-    return model, tokenizer, pos_mapping, ner_mapping, device
-
-MODEL, TOKENIZER, POS_MAPPING, NER_MAPPING, DEVICE = load_model_and_mappings()
+MODEL, TOKEN_TO_ID, ID_TO_TOKEN, POS_MAPPING, NER_MAPPING, DEVICE = load_model_and_mappings()

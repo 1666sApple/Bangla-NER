@@ -1,5 +1,5 @@
 import torch
-from app.models.ner_pos_model import MODEL, TOKENIZER, POS_MAPPING, NER_MAPPING, DEVICE
+from app.models.ner_pos_model import MODEL, TOKEN_TO_ID, ID_TO_TOKEN, POS_MAPPING, NER_MAPPING, DEVICE
 
 # Define dictionaries for full tag names
 POS_FULL_NAMES = {
@@ -46,12 +46,14 @@ NER_FULL_NAMES = {
 }
 
 def predict_sentence(sentence):
-    tokens = TOKENIZER(sentence, return_tensors="pt", padding=True, truncation=True, max_length=128)
-    input_ids = tokens['input_ids'].to(DEVICE)
-    attention_mask = tokens['attention_mask'].to(DEVICE)
-    token_type_ids = tokens.get('token_type_ids', None)
-    if token_type_ids is not None:
-        token_type_ids = token_type_ids.to(DEVICE)
+    # Tokenize sentence using the custom token_to_id mapping
+    tokens = sentence.split()
+    input_ids = [TOKEN_TO_ID.get(token, TOKEN_TO_ID['[PAD]']) for token in tokens]
+    input_ids = [TOKEN_TO_ID['[CLS]']] + input_ids + [TOKEN_TO_ID['[SEP]']]
+    input_ids = torch.tensor(input_ids).unsqueeze(0).to(DEVICE)
+
+    attention_mask = torch.ones_like(input_ids).to(DEVICE)
+    token_type_ids = torch.zeros_like(input_ids).to(DEVICE)
 
     with torch.no_grad():
         pos_logits, ner_logits, _ = MODEL(input_ids, attention_mask, token_type_ids, None, None)
@@ -59,8 +61,6 @@ def predict_sentence(sentence):
     pos_preds = torch.argmax(pos_logits, dim=2).cpu().numpy()[0]
     ner_preds = torch.argmax(ner_logits, dim=2).cpu().numpy()[0]
 
-    tokens = TOKENIZER.convert_ids_to_tokens(input_ids[0].cpu().numpy())
-    tokens = [token.lstrip('▁') for token in tokens[1:-1]]  # Skip [CLS] and [SEP] and remove leading '_'
     pos_preds = pos_preds[1:-1]  # Skip [CLS] and [SEP]
     ner_preds = ner_preds[1:-1]  # Skip [CLS] and [SEP]
 
