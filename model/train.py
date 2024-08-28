@@ -15,6 +15,7 @@ def train_fn(data_loader, model, optimizer, device, scheduler):
         optimizer.step()
         scheduler.step()
         total_loss += loss.item()
+        torch.cuda.empty_cache()
     return total_loss / len(data_loader)
 
 def val_fn(data_loader, model, device):
