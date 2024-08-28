@@ -2,6 +2,7 @@ import random
 import numpy as np
 import torch
 import pandas as pd
+from model.config import Config
 
 def seed_everything(seed=42):
     random.seed(seed)
@@ -62,3 +63,21 @@ def get_hyperparameters(model, ff=True, weight_decay=0.01):
         ]
         optimizer = torch.optim.AdamW(optimizer_grouped_parameters, lr=5e-5)
         return optimizer
+
+def create_token_to_id_mapping(texts):
+    token_set = set()
+    for text in texts:
+        if isinstance(text, list):
+            tokens = text
+        else:
+            tokens = text.split()
+        token_set.update(tokens)
+    
+    token_to_id = {token: idx + 3 for idx, token in enumerate(token_set)}
+    token_to_id['[CLS]'] = Config.CLS
+    token_to_id['[SEP]'] = Config.SEP
+    token_to_id['[PAD]'] = Config.VALUE_TOKEN
+    return token_to_id
+
+def create_id_to_token_mapping(token_to_id):
+    return {v: k for k, v in token_to_id.items()}
