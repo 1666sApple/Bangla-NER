@@ -41,7 +41,7 @@ Bangla-NER-POS/
 │   ├── dataset.py            # CustomDataset class
 │   ├── model.py              # NERPOSModel class
 │   ├── train.py              # Training and validation logic
-│   └── utils.py              # Utility functions (e.g., seed_everything, parse_dataset)
+│   └── utils.py              # Utility functions
 │
 ├── screenshots/
 │   ├── app-command.png
@@ -104,7 +104,7 @@ Create a virtual environment to manage dependencies:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
 ```
 
 ### 3. Install Dependencies:
@@ -117,25 +117,23 @@ pip install -r requirements.txt
 
 #### Explanation for for each dependency in `requirements.txt`:
 
-1. **transformers**: Library by Hugging Face for NLP tasks, providing pre-trained models like BERT and GPT, useful for NER and POS tagging.
+1. **torch**: Deep learning framework (PyTorch) used for building and training neural network models, acting as the backend for models.
 
-2. **torch**: Deep learning framework (PyTorch) used for building and training neural network models, acting as the backend for models.
+2. **pandas**: Data manipulation and analysis library for handling structured data in dataframes, essential for dataset processing.
 
-3. **pandas**: Data manipulation and analysis library for handling structured data in dataframes, essential for dataset processing.
+3. **scikit-learn**: Machine learning library offering tools for data preprocessing and model evaluation, including utilities like LabelEncoder for encoding labels.
 
-4. **scikit-learn**: Machine learning library offering tools for data preprocessing and model evaluation, including utilities like LabelEncoder for encoding labels.
+4. **numpy**: Fundamental package for numerical computing in Python, supporting multi-dimensional arrays and mathematical operations.
 
-5. **numpy**: Fundamental package for numerical computing in Python, supporting multi-dimensional arrays and mathematical operations.
+5. **fastapi**: High-performance web framework for building APIs with Python 3.7+ based on type hints, useful for exposing models as REST APIs.
 
-6. **fastapi**: High-performance web framework for building APIs with Python 3.7+ based on type hints, useful for exposing models as REST APIs.
+6. **uvicorn**: ASGI server implementation for serving FastAPI applications, enabling asynchronous web request handling.
 
-7. **uvicorn**: ASGI server implementation for serving FastAPI applications, enabling asynchronous web request handling.
+7. **Jinja2**: Templating engine for Python used by web frameworks like Flask to dynamically render HTML templates.
 
-8. **Jinja2**: Templating engine for Python used by web frameworks like Flask to dynamically render HTML templates.
+8. **pickle**: Standard Python library for serializing and deserializing Python objects, useful for saving models and data structures. Typically not listed in requirements.txt as it's part of the standard library.
 
-9. **pickle**: Standard Python library for serializing and deserializing Python objects, useful for saving models and data structures. Typically not listed in requirements.txt as it's part of the standard library.
-
-10. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
+9. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
 
 ## Usage
 
