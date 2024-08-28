@@ -63,10 +63,10 @@ def main():
     )
 
     # If gpu is available, then uncomment the following line
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     # If gpu is not available, then use the following line
-    device = torch.device("cpu")
+    # device = torch.device("cpu")
     model = NERPOSModel(
         num_pos=len(pos_mapping),
         num_ner=len(ner_mapping)
@@ -100,8 +100,6 @@ def main():
     # Save the token-to-ID and ID-to-token mappings
     with open('app/models-weight/token_to_id.pkl', 'wb') as f:
         pickle.dump(token_to_id, f)
-    with open('app/models-weight/id_to_token.pkl', 'wb') as f:
-        pickle.dump(id_to_token, f)
 
     print("Training complete.")
 
