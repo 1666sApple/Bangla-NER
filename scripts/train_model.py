@@ -11,7 +11,7 @@ from model.config import Config
 from model.dataset import CustomDataset
 from model.model import NERPOSModel
 from model.train import train_fn, val_fn
-from model.utils import seed_everything, parse_dataset, get_hyperparameters
+from model.utils import seed_everything, parse_dataset, get_hyperparameters, create_token_to_id_mapping, create_id_to_token_mapping
 import pickle
 
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
@@ -28,20 +28,50 @@ def main():
     texts = df['words'].values
     pos_tags = df['pos_tag_id'].values
     ner_tags = df['ner_tag_id'].values
+    token_to_id = create_token_to_id_mapping(texts)
+    id_to_token = create_id_to_token_mapping(token_to_id)
 
     train_texts, val_texts, train_pos, val_pos, train_ner, val_ner = train_test_split(
         texts, pos_tags, ner_tags, test_size=0.2, random_state=42
     )
 
-    train_dataset = CustomDataset(train_texts, train_pos, train_ner)
-    val_dataset = CustomDataset(val_texts, val_pos, val_ner)
+    # Create the training and validation datasets
+    train_dataset = CustomDataset(
+        texts=train_texts,
+        pos_tags=train_pos,
+        ner_tags=train_ner,
+        token_to_id=token_to_id, 
+        max_len=Config.MAX_LEN 
+    )
 
-    train_data_loader = DataLoader(train_dataset, batch_size=Config.TRAIN_BATCH_SIZE, shuffle=True, num_workers=2)
-    val_data_loader = DataLoader(val_dataset, batch_size=Config.VAL_BATCH_SIZE, shuffle=False, num_workers=2)
+    val_dataset = CustomDataset(
+        texts=val_texts,
+        pos_tags=val_pos,
+        ner_tags=val_ner,
+        token_to_id=token_to_id,
+        max_len=Config.MAX_LEN
+    )
 
+    # Create the DataLoaders for training and validation
+    train_data_loader = DataLoader(
+        train_dataset,
+        batch_size=Config.TRAIN_BATCH_SIZE,
+        shuffle=True
+    )
+
+    val_data_loader = DataLoader(
+        val_dataset,
+        batch_size=Config.VAL_BATCH_SIZE,
+        shuffle=False
+    )
+
+    # Set up the device (GPU if available)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = NERPOSModel(num_pos=len(pos_mapping), num_ner=len(ner_mapping))
-    model.to(device)
+
+    model = NERPOSModel(
+        num_pos=len(pos_mapping),
+        num_ner=len(ner_mapping)
+    ).to(device)
 
     optimizer = get_hyperparameters(model)
     total_steps = len(train_data_loader) * Config.EPOCHS
