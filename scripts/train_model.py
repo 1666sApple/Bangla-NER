@@ -14,6 +14,9 @@ from model.train import train_fn, val_fn
 from model.utils import seed_everything, parse_dataset, get_hyperparameters
 import pickle
 
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
+torch.cuda.empty_cache()
+
 
 def main():
     seed_everything()
@@ -33,8 +36,8 @@ def main():
     train_dataset = CustomDataset(train_texts, train_pos, train_ner)
     val_dataset = CustomDataset(val_texts, val_pos, val_ner)
 
-    train_data_loader = DataLoader(train_dataset, batch_size=Config.TRAIN_BATCH_SIZE, shuffle=True)
-    val_data_loader = DataLoader(val_dataset, batch_size=Config.VAL_BATCH_SIZE, shuffle=False)
+    train_data_loader = DataLoader(train_dataset, batch_size=Config.TRAIN_BATCH_SIZE, shuffle=True, num_workers=2)
+    val_data_loader = DataLoader(val_dataset, batch_size=Config.VAL_BATCH_SIZE, shuffle=False, num_workers=2)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = NERPOSModel(num_pos=len(pos_mapping), num_ner=len(ner_mapping))
