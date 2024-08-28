@@ -74,28 +74,15 @@ def predict_sentence(sentence):
     pos_preds = pos_preds[1:-1]
     ner_preds = ner_preds[1:-1]
 
-    # Align predictions with tokens
+    # Convert predicted IDs to POS and NER tags using the mappings
+    pos_tags = [list(POS_MAPPING.keys())[list(POS_MAPPING.values()).index(tag)] for tag in pos_preds]
+    ner_tags = [list(NER_MAPPING.keys())[list(NER_MAPPING.values()).index(tag)] for tag in ner_preds]
+
+    # Map the tags to their full names
     result = []
-    current_token = ""
-    current_pos = pos_preds[0]
-    current_ner = ner_preds[0]
-
-    for token, pos_pred, ner_pred in zip(tokens, pos_preds, ner_preds):
-        if pos_pred == current_pos and ner_pred == current_ner:
-            current_token += token
-        else:
-            if current_token:
-                pos_tag = POS_FULL_NAMES.get(list(POS_MAPPING.keys())[list(POS_MAPPING.values()).index(current_pos)], 'Unknown')
-                ner_tag = NER_FULL_NAMES.get(list(NER_MAPPING.keys())[list(NER_MAPPING.values()).index(current_ner)], 'Unknown')
-                result.append((current_token, pos_tag, ner_tag))
-            current_token = token
-            current_pos = pos_pred
-            current_ner = ner_pred
-
-    # Append the last token
-    if current_token:
-        pos_tag = POS_FULL_NAMES.get(list(POS_MAPPING.keys())[list(POS_MAPPING.values()).index(current_pos)], 'Unknown')
-        ner_tag = NER_FULL_NAMES.get(list(NER_MAPPING.keys())[list(NER_MAPPING.values()).index(current_ner)], 'Unknown')
-        result.append((current_token, pos_tag, ner_tag))
+    for token, pos_tag, ner_tag in zip(tokens, pos_tags, ner_tags):
+        pos_full_name = POS_FULL_NAMES.get(pos_tag, 'Unknown')
+        ner_full_name = NER_FULL_NAMES.get(ner_tag, 'Unknown')
+        result.append((token, pos_full_name, ner_full_name))
 
     return result
