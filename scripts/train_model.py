@@ -4,6 +4,7 @@ import torch
 from torch.utils.data import DataLoader
 from transformers import get_linear_schedule_with_warmup
 from sklearn.model_selection import train_test_split
+import pickle
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -12,7 +13,6 @@ from model.dataset import CustomDataset
 from model.model import NERPOSModel
 from model.train import train_fn, val_fn
 from model.utils import seed_everything, parse_dataset, get_hyperparameters, create_token_to_id_mapping, create_id_to_token_mapping
-import pickle
 
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 torch.cuda.empty_cache()
@@ -65,9 +65,11 @@ def main():
         shuffle=False
     )
 
-    # Set up the device (GPU if available)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+    # If gpu is available, then uncomment the following line
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # If gpu is not available, then use the following line
+    device = torch.device("cpu")
     model = NERPOSModel(
         num_pos=len(pos_mapping),
         num_ner=len(ner_mapping)
@@ -97,6 +99,12 @@ def main():
         pickle.dump(pos_mapping, f)
     with open('app/models-weight/ner_mapping.pkl', 'wb') as f:
         pickle.dump(ner_mapping, f)
+    
+    # Save the token-to-ID and ID-to-token mappings
+    with open('app/models-weight/token_to_id.pkl', 'wb') as f:
+        pickle.dump(token_to_id, f)
+    with open('app/models-weight/id_to_token.pkl', 'wb') as f:
+        pickle.dump(id_to_token, f)
 
     print("Training complete.")
 
