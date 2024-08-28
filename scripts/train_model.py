@@ -14,9 +14,6 @@ from model.model import NERPOSModel
 from model.train import train_fn, val_fn
 from model.utils import seed_everything, parse_dataset, get_hyperparameters, create_token_to_id_mapping, create_id_to_token_mapping
 
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
-torch.cuda.empty_cache()
-
 
 def main():
     seed_everything()

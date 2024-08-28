@@ -4,7 +4,7 @@ import torch
 import pandas as pd
 from model.config import Config
 
-def seed_everything(seed=42):
+def seed_everything(seed=64):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
