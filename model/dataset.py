@@ -3,10 +3,12 @@ from torch.utils.data import Dataset
 from model.config import Config
 
 class CustomDataset(Dataset):
-    def __init__(self, texts, pos_tags, ner_tags):
+    def __init__(self, texts, pos_tags, ner_tags, token_to_id, max_len):
         self.texts = texts
         self.pos_tags = pos_tags
         self.ner_tags = ner_tags
+        self.token_to_id = token_to_id
+        self.max_len = max_len
 
     def __len__(self):
         return len(self.texts)
@@ -17,45 +19,22 @@ class CustomDataset(Dataset):
         ner_tags = self.ner_tags[index]
 
         if isinstance(text, list):
-            text = ' '.join(text)
+            tokens = text
+        else:
+            tokens = text.split()
 
-        encoding = Config.TOKENIZER.encode_plus(
-            text,
-            add_special_tokens=True,
-            max_length=Config.MAX_LEN,
-            padding='max_length',
-            truncation=True,
-            return_tensors='pt',
-            return_attention_mask=True,
-            return_token_type_ids=True,
-            return_offsets_mapping=True
-        )
+        input_ids = [self.token_to_id.get(token, Config.VALUE_TOKEN) for token in tokens]
 
-        input_ids = encoding['input_ids'].squeeze().tolist()
-        attention_mask = encoding['attention_mask'].squeeze().tolist()
-        token_type_ids = encoding['token_type_ids'].squeeze().tolist()
-        offsets = encoding['offset_mapping'].squeeze().tolist()
+        tag_map_pos = pos_tags[:len(input_ids)]
+        tag_map_ner = ner_tags[:len(input_ids)]
 
-        token_to_tag_pos = [Config.VALUE_TOKEN] * len(input_ids)
-        token_to_tag_ner = [Config.VALUE_TOKEN] * len(input_ids)
-        
-        tag_map_pos = [Config.VALUE_TOKEN] * len(input_ids)
-        tag_map_ner = [Config.VALUE_TOKEN] * len(input_ids)
-        
-        for i, (start, end) in enumerate(offsets):
-            if start != 0 and end != 0:
-                token_index = sum(1 for s, e in offsets[:i] if s != 0 and e != 0) - 1
-                if token_index < len(pos_tags):
-                    tag_map_pos[i] = pos_tags[token_index]
-                    tag_map_ner[i] = ner_tags[token_index]
-        
-        ids = [Config.CLS] + input_ids[1:-1] + [Config.SEP]
-        target_pos = [Config.VALUE_TOKEN] + tag_map_pos[1:-1] + [Config.VALUE_TOKEN]
-        target_ner = [Config.VALUE_TOKEN] + tag_map_ner[1:-1] + [Config.VALUE_TOKEN]
+        ids = [Config.CLS] + input_ids + [Config.SEP]
+        target_pos = [Config.VALUE_TOKEN] + tag_map_pos + [Config.VALUE_TOKEN]
+        target_ner = [Config.VALUE_TOKEN] + tag_map_ner + [Config.VALUE_TOKEN]
         mask = [1] * len(ids)
         token_type_ids = [0] * len(ids)
 
-        padding_len = Config.MAX_LEN - len(ids)
+        padding_len = self.max_len - len(ids)
         ids.extend([Config.VALUE_TOKEN] * padding_len)
         target_pos.extend([Config.VALUE_TOKEN] * padding_len)
         target_ner.extend([Config.VALUE_TOKEN] * padding_len)
