@@ -9,23 +9,13 @@ class NERPOSModel(nn.Module):
         self.num_ner = num_ner
         self.bert = AutoModel.from_pretrained("xlm-roberta-base")
         
-        self._freeze_bert_layers()  # Freeze the initial layers and unfreeze the last 6 layers
+        for param in self.bert.parameters():
+            param.requires_grad = True
         
         self.bert_drop = nn.Dropout(0.3)
         self.out_pos = nn.Linear(768, self.num_pos)
         self.out_ner = nn.Linear(768, self.num_ner)
-
-    def _freeze_bert_layers(self):
-        num_layers = len(self.bert.encoder.layer)
-        # Freeze the first half of the layers
-        for i, layer in enumerate(self.bert.encoder.layer):
-            if i < num_layers - 6:
-                for param in layer.parameters():
-                    param.requires_grad = False
-            else:
-                for param in layer.parameters():
-                    param.requires_grad = True
-
+        
     def forward(self, ids, mask, token_type_ids=None, target_pos=None, target_ner=None):
         output = self.bert(ids, attention_mask=mask, token_type_ids=token_type_ids)
         bert_out = self.bert_drop(output.last_hidden_state)
