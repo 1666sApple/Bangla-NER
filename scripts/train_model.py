@@ -97,7 +97,7 @@ def main():
     with open('app/models-weight/ner_mapping.pkl', 'wb') as f:
         pickle.dump(ner_mapping, f)
     
-    # Save the token-to-ID and ID-to-token mappings
+    # Save the token-to-ID mappings
     with open('app/models-weight/token_to_id.pkl', 'wb') as f:
         pickle.dump(token_to_id, f)
 
