@@ -131,13 +131,11 @@ pip install -r requirements.txt
 
 7. **uvicorn**: ASGI server implementation for serving FastAPI applications, enabling asynchronous web request handling.
 
-8. **gunicorn**: WSGI HTTP server for running Python web applications, commonly used for deploying Flask applications in production.
+8. **Jinja2**: Templating engine for Python used by web frameworks like Flask to dynamically render HTML templates.
 
-9. **Jinja2**: Templating engine for Python used by web frameworks like Flask to dynamically render HTML templates.
+9. **pickle**: Standard Python library for serializing and deserializing Python objects, useful for saving models and data structures. Typically not listed in requirements.txt as it's part of the standard library.
 
-10. **pickle**: Standard Python library for serializing and deserializing Python objects, useful for saving models and data structures. Typically not listed in requirements.txt as it's part of the standard library.
-
-11. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
+10. **pydantic**: Data validation and settings management library using Python type annotations, used by FastAPI to validate and manage data structures.
 
 ## Usage
 
