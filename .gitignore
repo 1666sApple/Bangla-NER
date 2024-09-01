@@ -165,3 +165,5 @@ ner-pos.py
 ner-pos.ipynb
 data/readme.txt
 app/models-weight/ner_pos_model.pt
+managed_context/metadata.json
+test_suite_analysis/metadata.json
